@@ -15,25 +15,28 @@
 
 @interface MasterViewController ()<WYPhotoBrowserAnimatorDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *imageBtn;
+@property (weak, nonatomic) IBOutlet UIButton *imageBtn2;
 @property (nonatomic, strong) WYPhotoBrowserAnimator *animator;
 
+@property (nonatomic, strong) NSArray *bigImageURLs;
+@property (nonatomic, strong) NSArray *smallImageURLs;
+@property (nonatomic, strong) NSArray *photos;
 @end
 
 @implementation MasterViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [self.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:@"http://pic.secooimg.com/thumb/112/112/pic1.secoo.com/comment/15/10/b49bc924c89f4080a0b0b516ea7e0c72.jpg"] forState:UIControlStateNormal];
+  [self.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:self.smallImageURLs[0]] forState:UIControlStateNormal];
+  [self.imageBtn2 sd_setBackgroundImageWithURL:[NSURL URLWithString:self.smallImageURLs[1]] forState:UIControlStateNormal];
 }
 
-- (IBAction)_clickBtn:(UIButton *)sender {
-  WYPhoto *photo = [[WYPhoto alloc] init];
-  photo.wy_bigImageURL = @"http://pic.secooimg.com/comment/15/10/b49bc924c89f4080a0b0b516ea7e0c72.jpg";
-  photo.wy_smallImage = [self.imageBtn backgroundImageForState:UIControlStateNormal];
-  WYPhotoBrowserAnimator *animator = [[WYPhotoBrowserAnimator alloc] initWithPhotos:@[photo]];
+- (IBAction)_handleClickAction:(UIButton *)sender {
+  NSInteger index = sender.tag - 1000;
+  WYPhotoBrowserAnimator *animator = [[WYPhotoBrowserAnimator alloc] initWithPhotos:self.photos];
   animator.wy_dataSource = self;
   self.animator = animator;
-  [animator wy_showFromIndex:0];
+  [animator wy_showFromIndex:index];
 }
 
 #pragma mark - WYPhotoBrowserAnimatorDataSource
@@ -41,7 +44,41 @@
   if (0 == index) {
     return [self.view convertRect:self.imageBtn.frame toView:[UIApplication sharedApplication].keyWindow];
   }
+  if (1 == index) {
+    return [self.view convertRect:self.imageBtn2.frame toView:[UIApplication sharedApplication].keyWindow];
+  }
   return CGRectMake(SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0, 0, 0);
+}
+
+#pragma mark - setter & getter
+- (NSArray *)smallImageURLs {
+  if (!_smallImageURLs) {
+    _smallImageURLs = @[@"http://pic.secooimg.com/thumb/112/112/pic1.secoo.com/comment/15/11/878ca70019fb4057ba9df62dea1d5bc0.jpg",
+                        @"http://pic.secooimg.com/thumb/112/112/pic1.secoo.com/comment/15/11/951c285b4ef34dffa2a30a08ce2e2b4a.jpg"];
+  }
+  return _smallImageURLs;
+}
+
+- (NSArray *)bigImageURLs {
+  if (!_bigImageURLs) {
+    _bigImageURLs = @[@"http://pic.secooimg.com/comment/15/11/878ca70019fb4057ba9df62dea1d5bc0.jpg",
+                      @"http://pic.secooimg.com/comment/15/11/951c285b4ef34dffa2a30a08ce2e2b4a.jpg"];
+  }
+  return _bigImageURLs;
+}
+
+- (NSArray *)photos {
+  if (!_photos) {
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (NSInteger i = 0; i < 2; ++i) {
+      WYPhoto *photo = [[WYPhoto alloc] init];
+      photo.wy_bigImageURL = self.bigImageURLs[i];
+      photo.wy_smallImage = [(UIButton *)[self.view viewWithTag:1000 + i] backgroundImageForState:UIControlStateNormal];
+      [tempArray addObject:photo];
+    }
+    _photos = [NSArray arrayWithArray:tempArray];
+  }
+  return _photos;
 }
 
 @end

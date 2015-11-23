@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FbO-qN-HuS">
+                            <button opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FbO-qN-HuS">
                                 <rect key="frame" x="39" y="161" width="70" height="70"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -27,20 +27,35 @@
                                     <constraint firstAttribute="height" constant="70" id="zYx-2Z-Dfr"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="_clickBtn:" destination="Kpa-pQ-qkt" eventType="touchUpInside" id="ux5-Bd-IrX"/>
+                                    <action selector="_handleClickAction:" destination="Kpa-pQ-qkt" eventType="touchUpInside" id="qdg-Ia-h0z"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aag-ES-qhY">
+                                <rect key="frame" x="165" y="161" width="70" height="70"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.87058823529999996" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="4cX-Vg-vyb"/>
+                                    <constraint firstAttribute="height" constant="70" id="lHw-LS-EfF"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="_handleClickAction:" destination="Kpa-pQ-qkt" eventType="touchUpInside" id="MaR-ew-gRy"/>
                                 </connections>
                             </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="aag-ES-qhY" firstAttribute="top" secondItem="JFg-yY-ouw" secondAttribute="bottom" constant="97" id="24y-3c-RiX"/>
                             <constraint firstItem="FbO-qN-HuS" firstAttribute="leading" secondItem="lGm-e9-C5H" secondAttribute="leadingMargin" constant="19" id="VfM-Xa-bqB"/>
                             <constraint firstItem="FbO-qN-HuS" firstAttribute="top" secondItem="JFg-yY-ouw" secondAttribute="bottom" constant="97" id="W2s-6h-phA"/>
+                            <constraint firstItem="aag-ES-qhY" firstAttribute="leading" secondItem="FbO-qN-HuS" secondAttribute="trailing" constant="56" id="WYC-DB-plv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="U6R-wx-QVp"/>
                     <connections>
                         <outlet property="imageBtn" destination="FbO-qN-HuS" id="2EH-ef-WTt"/>
+                        <outlet property="imageBtn2" destination="aag-ES-qhY" id="gty-NT-MxD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="plr-rP-EzA" userLabel="First Responder" sceneMemberID="firstResponder"/>
