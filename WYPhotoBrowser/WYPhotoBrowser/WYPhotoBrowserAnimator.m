@@ -13,6 +13,7 @@
 @interface WYPhotoBrowserAnimator ()<UIViewControllerTransitioningDelegate,
                                       UIViewControllerAnimatedTransitioning,
                                       WYPhotoBrowserViewControllerDelegate>
+@property (nonatomic, weak) WYPhotoBrowserViewController *photoBrowserViewController;
 @property (nonatomic, strong) NSArray<WYPhoto *> *photos;
 @property (nonatomic, assign) BOOL isBeingPresented;
 @end
@@ -47,11 +48,12 @@
 
 #pragma mark - Public Methods
 - (void)wy_showFromIndex:(NSInteger)fromIndex {
-  _wy_currentIndex = fromIndex;
   WYPhotoBrowserViewController *vc = [[WYPhotoBrowserViewController alloc] initWithPhotos:self.photos];
   vc.wy_delegate = self;
+  vc.wy_currentIndex = fromIndex;
   vc.transitioningDelegate = self;
   vc.modalPresentationStyle = UIModalPresentationCustom;
+  self.photoBrowserViewController = vc;
   UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
   [keyWindow.rootViewController presentViewController:vc animated:YES completion:nil];
 }
@@ -61,7 +63,7 @@
   WYPhotoBrowserViewController *vc = [transitionContext viewControllerForKey:
                                       UITransitionContextToViewControllerKey];
 
-  WYPhoto *currentPhoto = self.photos[_wy_currentIndex];
+  WYPhoto *currentPhoto = self.photos[self.wy_currentIndex];
   UIView *containerView = [transitionContext containerView];
   UIView *toView = vc.view;
   CGRect fromRect = [self.wy_dataSource wy_photoBrowserAnimator:self frameAtScreenForIndex:self.wy_currentIndex];
@@ -93,7 +95,7 @@
   [vc.view removeFromSuperview];
   [transitionContext completeTransition:YES];
 
-  WYPhoto *currentPhoto = self.photos[_wy_currentIndex];
+  WYPhoto *currentPhoto = self.photos[self.wy_currentIndex];
   UIView *containerView = [UIApplication sharedApplication].keyWindow;
   CGRect toRect = [self.wy_dataSource wy_photoBrowserAnimator:self frameAtScreenForIndex:self.wy_currentIndex];
 
@@ -150,8 +152,12 @@
 
 #pragma mark - WYPhotoBrowserViewControllerDelegate
 - (void)wy_photoBrowserViewController:(WYPhotoBrowserViewController *)photoBrowserViewController didClickImageViewAtIndex:(NSInteger)index {
-  _wy_currentIndex = index;
   [photoBrowserViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - setter & getter
+- (NSInteger)wy_currentIndex {
+  return self.photoBrowserViewController.wy_currentIndex;
 }
 
 @end

@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WYPhotoBrowserViewController : UIViewController
 @property (nonatomic, weak) id<WYPhotoBrowserViewControllerDelegate> wy_delegate;
+@property (nonatomic, assign) NSInteger wy_currentIndex;
 
 - (instancetype)initWithPhotos:(NSArray<WYPhoto *> * _Nullable)photos;
 @end

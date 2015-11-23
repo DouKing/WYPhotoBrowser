@@ -11,10 +11,13 @@
 #import "WYPhoto.h"
 
 static NSString * const kWYPhotoCollectionViewCellId = @"kWYPhotoCollectionViewCellId";
+static CGFloat const kWYPageControlHeight = 20;
+static CGFloat const kWYPageControlBottomSpace = 50;
 
 @interface WYPhotoBrowserViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSArray<WYPhoto *> *photos;
 @property (nonatomic, weak) UICollectionView *collectionView;
+@property (nonatomic, weak) UIPageControl *pageControl;
 @end
 
 @implementation WYPhotoBrowserViewController
@@ -32,6 +35,7 @@ static NSString * const kWYPhotoCollectionViewCellId = @"kWYPhotoCollectionViewC
   [super viewDidLoad];
   self.view.backgroundColor = [UIColor blackColor];
   [self _setupCollectionView];
+  [self _setupPageControl];
 }
 
 - (void)_setupCollectionView {
@@ -51,6 +55,20 @@ static NSString * const kWYPhotoCollectionViewCellId = @"kWYPhotoCollectionViewC
      forCellWithReuseIdentifier:kWYPhotoCollectionViewCellId];
   self.collectionView = collectionView;
   [self.view addSubview:collectionView];
+  
+  [collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.wy_currentIndex inSection:0]
+                         atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+}
+
+- (void)_setupPageControl {
+  CGRect frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) - kWYPageControlBottomSpace,
+                            CGRectGetWidth(self.view.bounds), kWYPageControlHeight);
+  UIPageControl *pageControl = [[UIPageControl alloc] initWithFrame:frame];
+  pageControl.numberOfPages = self.photos.count;
+  pageControl.hidesForSinglePage = YES;
+  pageControl.currentPage = self.wy_currentIndex;
+  self.pageControl = pageControl;
+  [self.view addSubview:pageControl];
 }
 
 #pragma mark - UICollectionViewDataSource & UICollectionViewDelegate
@@ -70,6 +88,14 @@ static NSString * const kWYPhotoCollectionViewCellId = @"kWYPhotoCollectionViewC
                            @selector(wy_photoBrowserViewController:didClickImageViewAtIndex:)]) {
     [self.wy_delegate wy_photoBrowserViewController:self didClickImageViewAtIndex:indexPath.item];
   }
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+  CGFloat offsetX = scrollView.contentOffset.x;
+  NSInteger index = offsetX / CGRectGetWidth(scrollView.bounds);
+  self.pageControl.currentPage = index;
+  self.wy_currentIndex = index;
 }
 
 @end
