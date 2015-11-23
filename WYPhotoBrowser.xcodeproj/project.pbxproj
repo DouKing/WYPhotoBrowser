@@ -1,0 +1,419 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6ECE7B7FB7446A08C9AC3528 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 197E698B97F2BD6B6FE0065D /* libPods.a */; };
+		B8246CF21BFF0299004374DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246CF11BFF0299004374DA /* main.m */; };
+		B8246CF51BFF0299004374DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246CF41BFF0299004374DA /* AppDelegate.m */; };
+		B8246CF81BFF0299004374DA /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246CF71BFF0299004374DA /* MasterViewController.m */; };
+		B8246CFE1BFF0299004374DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8246CFC1BFF0299004374DA /* Main.storyboard */; };
+		B8246D001BFF0299004374DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8246CFF1BFF0299004374DA /* Assets.xcassets */; };
+		B8246D031BFF0299004374DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8246D011BFF0299004374DA /* LaunchScreen.storyboard */; };
+		B8246D0D1BFF1A5B004374DA /* WYPhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246D0C1BFF1A5B004374DA /* WYPhotoBrowserViewController.m */; };
+		B8246D101BFF27E9004374DA /* WYPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246D0F1BFF27E9004374DA /* WYPhotoCollectionViewCell.m */; };
+		B8246D131BFF27FE004374DA /* WYPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246D121BFF27FE004374DA /* WYPhoto.m */; };
+		B87729A11C02B8E200B8FE10 /* WYPhotoBrowserAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = B87729A01C02B8E200B8FE10 /* WYPhotoBrowserAnimator.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		197E698B97F2BD6B6FE0065D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8246CED1BFF0299004374DA /* WYPhotoBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYPhotoBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8246CF11BFF0299004374DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B8246CF31BFF0299004374DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B8246CF41BFF0299004374DA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B8246CF61BFF0299004374DA /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		B8246CF71BFF0299004374DA /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		B8246CFD1BFF0299004374DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B8246CFF1BFF0299004374DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B8246D021BFF0299004374DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B8246D041BFF0299004374DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8246D0B1BFF1A5B004374DA /* WYPhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPhotoBrowserViewController.h; sourceTree = "<group>"; };
+		B8246D0C1BFF1A5B004374DA /* WYPhotoBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPhotoBrowserViewController.m; sourceTree = "<group>"; };
+		B8246D0E1BFF27E9004374DA /* WYPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		B8246D0F1BFF27E9004374DA /* WYPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		B8246D111BFF27FE004374DA /* WYPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPhoto.h; sourceTree = "<group>"; };
+		B8246D121BFF27FE004374DA /* WYPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPhoto.m; sourceTree = "<group>"; };
+		B877299F1C02B8E200B8FE10 /* WYPhotoBrowserAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPhotoBrowserAnimator.h; sourceTree = "<group>"; };
+		B87729A01C02B8E200B8FE10 /* WYPhotoBrowserAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPhotoBrowserAnimator.m; sourceTree = "<group>"; };
+		BEB4824533D2BAFFBED681EE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		D2220D01A1CC1C8CC6F00D9E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B8246CEA1BFF0299004374DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6ECE7B7FB7446A08C9AC3528 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2E3A4A1EF42566B3CFF2877D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				197E698B97F2BD6B6FE0065D /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A883DE87A6FAA74A5AEFA147 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D2220D01A1CC1C8CC6F00D9E /* Pods.debug.xcconfig */,
+				BEB4824533D2BAFFBED681EE /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B8246CE41BFF0298004374DA = {
+			isa = PBXGroup;
+			children = (
+				B8246CEF1BFF0299004374DA /* WYPhotoBrowser */,
+				B8246CEE1BFF0299004374DA /* Products */,
+				A883DE87A6FAA74A5AEFA147 /* Pods */,
+				2E3A4A1EF42566B3CFF2877D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B8246CEE1BFF0299004374DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B8246CED1BFF0299004374DA /* WYPhotoBrowser.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B8246CEF1BFF0299004374DA /* WYPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				B8246D0A1BFF17AD004374DA /* WYPhotoBrowser */,
+				B8246CF31BFF0299004374DA /* AppDelegate.h */,
+				B8246CF41BFF0299004374DA /* AppDelegate.m */,
+				B8246CF61BFF0299004374DA /* MasterViewController.h */,
+				B8246CF71BFF0299004374DA /* MasterViewController.m */,
+				B8246CFC1BFF0299004374DA /* Main.storyboard */,
+				B8246CFF1BFF0299004374DA /* Assets.xcassets */,
+				B8246D011BFF0299004374DA /* LaunchScreen.storyboard */,
+				B8246D041BFF0299004374DA /* Info.plist */,
+				B8246CF01BFF0299004374DA /* Supporting Files */,
+			);
+			path = WYPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		B8246CF01BFF0299004374DA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B8246CF11BFF0299004374DA /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B8246D0A1BFF17AD004374DA /* WYPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				B8246D0B1BFF1A5B004374DA /* WYPhotoBrowserViewController.h */,
+				B8246D0C1BFF1A5B004374DA /* WYPhotoBrowserViewController.m */,
+				B8246D0E1BFF27E9004374DA /* WYPhotoCollectionViewCell.h */,
+				B8246D0F1BFF27E9004374DA /* WYPhotoCollectionViewCell.m */,
+				B8246D111BFF27FE004374DA /* WYPhoto.h */,
+				B8246D121BFF27FE004374DA /* WYPhoto.m */,
+				B877299F1C02B8E200B8FE10 /* WYPhotoBrowserAnimator.h */,
+				B87729A01C02B8E200B8FE10 /* WYPhotoBrowserAnimator.m */,
+			);
+			path = WYPhotoBrowser;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B8246CEC1BFF0299004374DA /* WYPhotoBrowser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8246D071BFF0299004374DA /* Build configuration list for PBXNativeTarget "WYPhotoBrowser" */;
+			buildPhases = (
+				44A8925DFF2CE64B0E3DE508 /* Check Pods Manifest.lock */,
+				B8246CE91BFF0299004374DA /* Sources */,
+				B8246CEA1BFF0299004374DA /* Frameworks */,
+				B8246CEB1BFF0299004374DA /* Resources */,
+				4F67D2C44B7BF5211B41A2F4 /* Embed Pods Frameworks */,
+				65D845628DC9318D5D93466B /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WYPhotoBrowser;
+			productName = WYPhotoBrowser;
+			productReference = B8246CED1BFF0299004374DA /* WYPhotoBrowser.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B8246CE51BFF0298004374DA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = secoo;
+				TargetAttributes = {
+					B8246CEC1BFF0299004374DA = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+				};
+			};
+			buildConfigurationList = B8246CE81BFF0298004374DA /* Build configuration list for PBXProject "WYPhotoBrowser" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B8246CE41BFF0298004374DA;
+			productRefGroup = B8246CEE1BFF0299004374DA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B8246CEC1BFF0299004374DA /* WYPhotoBrowser */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B8246CEB1BFF0299004374DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8246D031BFF0299004374DA /* LaunchScreen.storyboard in Resources */,
+				B8246D001BFF0299004374DA /* Assets.xcassets in Resources */,
+				B8246CFE1BFF0299004374DA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		44A8925DFF2CE64B0E3DE508 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4F67D2C44B7BF5211B41A2F4 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65D845628DC9318D5D93466B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B8246CE91BFF0299004374DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8246CF51BFF0299004374DA /* AppDelegate.m in Sources */,
+				B8246D101BFF27E9004374DA /* WYPhotoCollectionViewCell.m in Sources */,
+				B8246CF81BFF0299004374DA /* MasterViewController.m in Sources */,
+				B8246CF21BFF0299004374DA /* main.m in Sources */,
+				B87729A11C02B8E200B8FE10 /* WYPhotoBrowserAnimator.m in Sources */,
+				B8246D0D1BFF1A5B004374DA /* WYPhotoBrowserViewController.m in Sources */,
+				B8246D131BFF27FE004374DA /* WYPhoto.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B8246CFC1BFF0299004374DA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B8246CFD1BFF0299004374DA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B8246D011BFF0299004374DA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B8246D021BFF0299004374DA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B8246D051BFF0299004374DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B8246D061BFF0299004374DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B8246D081BFF0299004374DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2220D01A1CC1C8CC6F00D9E /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WYPhotoBrowser/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.secoo.www.WYPhotoBrowser;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B8246D091BFF0299004374DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BEB4824533D2BAFFBED681EE /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WYPhotoBrowser/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.secoo.www.WYPhotoBrowser;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B8246CE81BFF0298004374DA /* Build configuration list for PBXProject "WYPhotoBrowser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8246D051BFF0299004374DA /* Debug */,
+				B8246D061BFF0299004374DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8246D071BFF0299004374DA /* Build configuration list for PBXNativeTarget "WYPhotoBrowser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8246D081BFF0299004374DA /* Debug */,
+				B8246D091BFF0299004374DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B8246CE51BFF0298004374DA /* Project object */;
+}
