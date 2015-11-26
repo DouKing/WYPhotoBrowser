@@ -46,13 +46,15 @@ static CGFloat const kWYPageControlBottomSpace = 50;
 }
 
 - (void)_setupCollectionView {
+  CGFloat width = CGRectGetWidth(self.view.bounds) + kWYPhotoImageViewInsert * 2;
   UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-  flowLayout.itemSize = self.view.bounds.size;
+  flowLayout.itemSize = CGSizeMake(width, CGRectGetHeight(self.view.bounds));
   flowLayout.minimumInteritemSpacing = 0;
   flowLayout.minimumLineSpacing = 0;
   flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
   
-  UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds
+  CGRect frame = CGRectMake(-kWYPhotoImageViewInsert, 0, width, CGRectGetHeight(self.view.bounds));
+  UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:frame
                                                         collectionViewLayout:flowLayout];
   collectionView.dataSource = self;
   collectionView.delegate = self;

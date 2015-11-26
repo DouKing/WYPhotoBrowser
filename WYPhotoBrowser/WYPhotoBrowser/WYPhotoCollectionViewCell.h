@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class WYPhoto;
 
+extern CGFloat const kWYPhotoImageViewInsert;
+
 @interface WYPhotoCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, weak) UIImageView *wy_imageView;

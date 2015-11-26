@@ -10,6 +10,8 @@
 #import "WYPhoto.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
+CGFloat const kWYPhotoImageViewInsert = 5;
+
 @implementation WYPhotoCollectionViewCell
 - (instancetype)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
@@ -33,7 +35,11 @@
 }
 
 - (void)_setupImageView {
-  UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.contentView.bounds];
+  CGRect frame = CGRectMake(kWYPhotoImageViewInsert, 0,
+                            CGRectGetWidth(self.contentView.bounds) -
+                            kWYPhotoImageViewInsert * 2,
+                            CGRectGetHeight(self.contentView.bounds));
+  UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
   imageView.contentMode = UIViewContentModeScaleAspectFit;
   imageView.clipsToBounds = YES;
   _wy_imageView = imageView;
