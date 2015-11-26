@@ -16,6 +16,7 @@ static CGFloat const kWYPageControlBottomSpace = 50;
 
 @interface WYPhotoBrowserViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSArray<WYPhoto *> *photos;
+@property (nonatomic, assign) NSInteger photoNumbers;
 @property (nonatomic, weak) UICollectionView *collectionView;
 @property (nonatomic, weak) UIPageControl *pageControl;
 @end
@@ -26,7 +27,13 @@ static CGFloat const kWYPageControlBottomSpace = 50;
   self = [super initWithNibName:nil bundle:nil];
   if (self) {
     NSAssert(photos.count > 0, @"没图片啊！！");
-    _photos = photos;
+    _photoNumbers = photos.count;
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:photos];
+    if (_photoNumbers > 1) {
+      [temp insertObject:photos.lastObject atIndex:0];
+      [temp addObject:photos.firstObject];
+    }
+    _photos = [NSArray arrayWithArray:temp];
   }
   return self;
 }
@@ -56,7 +63,7 @@ static CGFloat const kWYPageControlBottomSpace = 50;
   self.collectionView = collectionView;
   [self.view addSubview:collectionView];
   
-  [collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.wy_currentIndex inSection:0]
+  [collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.wy_currentIndex + 1 inSection:0]
                          atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
 }
 
@@ -64,7 +71,7 @@ static CGFloat const kWYPageControlBottomSpace = 50;
   CGRect frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) - kWYPageControlBottomSpace,
                             CGRectGetWidth(self.view.bounds), kWYPageControlHeight);
   UIPageControl *pageControl = [[UIPageControl alloc] initWithFrame:frame];
-  pageControl.numberOfPages = self.photos.count;
+  pageControl.numberOfPages = self.photos.count - 2;
   pageControl.hidesForSinglePage = YES;
   pageControl.currentPage = self.wy_currentIndex;
   self.pageControl = pageControl;
@@ -84,18 +91,43 @@ static CGFloat const kWYPageControlBottomSpace = 50;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  NSInteger index = indexPath.item;
+  if (self.photoNumbers > 1) {
+    if (0 == index) {
+      index = self.photoNumbers;
+    } else if (index == self.photoNumbers + 1) {
+      index = 1;
+    }
+  }
   if (self.wy_delegate && [self.wy_delegate respondsToSelector:
                            @selector(wy_photoBrowserViewController:didClickImageViewAtIndex:)]) {
-    [self.wy_delegate wy_photoBrowserViewController:self didClickImageViewAtIndex:indexPath.item];
+    [self.wy_delegate wy_photoBrowserViewController:self didClickImageViewAtIndex:index];
   }
 }
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+  if (_photoNumbers <= 1) { return; }
   CGFloat offsetX = scrollView.contentOffset.x;
-  NSInteger index = offsetX / CGRectGetWidth(scrollView.bounds);
-  self.pageControl.currentPage = index;
-  self.wy_currentIndex = index;
+  if (offsetX < CGRectGetWidth(self.collectionView.bounds)) {
+    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:self.photoNumbers inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:lastIndexPath
+                                atScrollPosition:UICollectionViewScrollPositionNone
+                                        animated:NO];
+    self.pageControl.currentPage = self.photoNumbers - 1;
+    self.wy_currentIndex = self.photoNumbers - 1;
+  } else if (offsetX > CGRectGetWidth(self.collectionView.bounds) * self.photoNumbers) {
+    NSIndexPath *firstIndexPath = [NSIndexPath indexPathForItem:1 inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:firstIndexPath
+                                atScrollPosition:UICollectionViewScrollPositionNone
+                                        animated:NO];
+    self.pageControl.currentPage = 0;
+    self.wy_currentIndex = 0;
+  } else {
+    NSInteger index = offsetX / CGRectGetWidth(scrollView.bounds) - 1;
+    self.pageControl.currentPage = index;
+    self.wy_currentIndex = index;
+  }
 }
 
 @end
