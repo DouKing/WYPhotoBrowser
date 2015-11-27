@@ -14,7 +14,7 @@ static NSString * const kWYPhotoCollectionViewCellId = @"kWYPhotoCollectionViewC
 static CGFloat const kWYPageControlHeight = 20;
 static CGFloat const kWYPageControlBottomSpace = 50;
 
-@interface WYPhotoBrowserViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface WYPhotoBrowserViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, WYPhotoCollectionViewCellDelegate>
 @property (nonatomic, strong) NSArray<WYPhoto *> *photos;
 @property (nonatomic, assign) NSInteger photoNumbers;
 @property (nonatomic, weak) UICollectionView *collectionView;
@@ -80,19 +80,9 @@ static CGFloat const kWYPageControlBottomSpace = 50;
   [self.view addSubview:pageControl];
 }
 
-#pragma mark - UICollectionViewDataSource & UICollectionViewDelegate
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-  return self.photos.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-  WYPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kWYPhotoCollectionViewCellId
-                                                                              forIndexPath:indexPath];
-  [cell wy_setupWithPhoto:self.photos[indexPath.item]];
-  return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+#pragma mark - WYPhotoCollectionViewCellDelegate
+- (void)wy_photoCollectionViewCell:(WYPhotoCollectionViewCell *)cell didTapImageView:(UIImageView *)imageView {
+  NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
   NSInteger index = indexPath.item;
   if (self.photoNumbers > 1) {
     if (0 == index) {
@@ -105,6 +95,19 @@ static CGFloat const kWYPageControlBottomSpace = 50;
                            @selector(wy_photoBrowserViewController:didClickImageViewAtIndex:)]) {
     [self.wy_delegate wy_photoBrowserViewController:self didClickImageViewAtIndex:index];
   }
+}
+
+#pragma mark - UICollectionViewDataSource & UICollectionViewDelegate
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+  return self.photos.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+  WYPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kWYPhotoCollectionViewCellId
+                                                                              forIndexPath:indexPath];
+  cell.wy_delegate = self;
+  [cell wy_setupWithPhoto:self.photos[indexPath.item]];
+  return cell;
 }
 
 #pragma mark - UIScrollViewDelegate

@@ -10,13 +10,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class WYPhoto;
+@class WYPhoto, WYPhotoCollectionViewCell;
 
 extern CGFloat const kWYPhotoImageViewInsert;
 
+@protocol WYPhotoCollectionViewCellDelegate <NSObject>
+
+- (void)wy_photoCollectionViewCell:(WYPhotoCollectionViewCell *)cell didTapImageView:(UIImageView *)imageView;
+
+@end
+
 @interface WYPhotoCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, weak) UIImageView *wy_imageView;
+@property (nonatomic, weak) id<WYPhotoCollectionViewCellDelegate> wy_delegate;
 
 - (void)wy_setupWithPhoto:(WYPhoto *)photo;
 
