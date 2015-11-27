@@ -3,5 +3,4 @@
 *.xcodeproj/xcuserdata/
 *.xcworkspace/xcshareddata/*.xccheckout
 *.xcworkspace/xcuserdata/
-*.xcworkspace/xcuserdata/*.xcuserdatad
 Pods/*
