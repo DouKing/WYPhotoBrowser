@@ -10,13 +10,13 @@
 		6ECE7B7FB7446A08C9AC3528 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 197E698B97F2BD6B6FE0065D /* libPods.a */; };
 		B8246CF21BFF0299004374DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246CF11BFF0299004374DA /* main.m */; };
 		B8246CF51BFF0299004374DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246CF41BFF0299004374DA /* AppDelegate.m */; };
-		B8246CF81BFF0299004374DA /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246CF71BFF0299004374DA /* MasterViewController.m */; };
 		B8246CFE1BFF0299004374DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8246CFC1BFF0299004374DA /* Main.storyboard */; };
 		B8246D001BFF0299004374DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8246CFF1BFF0299004374DA /* Assets.xcassets */; };
 		B8246D031BFF0299004374DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8246D011BFF0299004374DA /* LaunchScreen.storyboard */; };
-		B8246D0D1BFF1A5B004374DA /* WYPhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246D0C1BFF1A5B004374DA /* WYPhotoBrowserViewController.m */; };
-		B8246D101BFF27E9004374DA /* WYPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246D0F1BFF27E9004374DA /* WYPhotoCollectionViewCell.m */; };
-		B8246D131BFF27FE004374DA /* WYPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246D121BFF27FE004374DA /* WYPhoto.m */; };
+		B8339C6F1C082FC000EEDC98 /* WYPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = B8339C681C082FC000EEDC98 /* WYPhoto.m */; };
+		B8339C701C082FC000EEDC98 /* WYPhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8339C6B1C082FC000EEDC98 /* WYPhotoBrowserViewController.m */; };
+		B8339C711C082FC000EEDC98 /* WYPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8339C6E1C082FC000EEDC98 /* WYPhotoCollectionViewCell.m */; };
+		B8339C751C082FF700EEDC98 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8339C741C082FF700EEDC98 /* MasterViewController.m */; };
 		B87729A11C02B8E200B8FE10 /* WYPhotoBrowserAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = B87729A01C02B8E200B8FE10 /* WYPhotoBrowserAnimator.m */; };
 /* End PBXBuildFile section */
 
@@ -26,18 +26,18 @@
 		B8246CF11BFF0299004374DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B8246CF31BFF0299004374DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B8246CF41BFF0299004374DA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B8246CF61BFF0299004374DA /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		B8246CF71BFF0299004374DA /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		B8246CFD1BFF0299004374DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B8246CFF1BFF0299004374DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8246D021BFF0299004374DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B8246D041BFF0299004374DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B8246D0B1BFF1A5B004374DA /* WYPhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPhotoBrowserViewController.h; sourceTree = "<group>"; };
-		B8246D0C1BFF1A5B004374DA /* WYPhotoBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPhotoBrowserViewController.m; sourceTree = "<group>"; };
-		B8246D0E1BFF27E9004374DA /* WYPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPhotoCollectionViewCell.h; sourceTree = "<group>"; };
-		B8246D0F1BFF27E9004374DA /* WYPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPhotoCollectionViewCell.m; sourceTree = "<group>"; };
-		B8246D111BFF27FE004374DA /* WYPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPhoto.h; sourceTree = "<group>"; };
-		B8246D121BFF27FE004374DA /* WYPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPhoto.m; sourceTree = "<group>"; };
+		B8339C671C082FC000EEDC98 /* WYPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPhoto.h; sourceTree = "<group>"; };
+		B8339C681C082FC000EEDC98 /* WYPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPhoto.m; sourceTree = "<group>"; };
+		B8339C6A1C082FC000EEDC98 /* WYPhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPhotoBrowserViewController.h; sourceTree = "<group>"; };
+		B8339C6B1C082FC000EEDC98 /* WYPhotoBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPhotoBrowserViewController.m; sourceTree = "<group>"; };
+		B8339C6D1C082FC000EEDC98 /* WYPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		B8339C6E1C082FC000EEDC98 /* WYPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		B8339C731C082FF700EEDC98 /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		B8339C741C082FF700EEDC98 /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		B877299F1C02B8E200B8FE10 /* WYPhotoBrowserAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPhotoBrowserAnimator.h; sourceTree = "<group>"; };
 		B87729A01C02B8E200B8FE10 /* WYPhotoBrowserAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPhotoBrowserAnimator.m; sourceTree = "<group>"; };
 		BEB4824533D2BAFFBED681EE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -95,10 +95,9 @@
 			isa = PBXGroup;
 			children = (
 				B8246D0A1BFF17AD004374DA /* WYPhotoBrowser */,
+				B8339C721C082FF700EEDC98 /* Demo */,
 				B8246CF31BFF0299004374DA /* AppDelegate.h */,
 				B8246CF41BFF0299004374DA /* AppDelegate.m */,
-				B8246CF61BFF0299004374DA /* MasterViewController.h */,
-				B8246CF71BFF0299004374DA /* MasterViewController.m */,
 				B8246CFC1BFF0299004374DA /* Main.storyboard */,
 				B8246CFF1BFF0299004374DA /* Assets.xcassets */,
 				B8246D011BFF0299004374DA /* LaunchScreen.storyboard */,
@@ -119,16 +118,49 @@
 		B8246D0A1BFF17AD004374DA /* WYPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				B8246D0B1BFF1A5B004374DA /* WYPhotoBrowserViewController.h */,
-				B8246D0C1BFF1A5B004374DA /* WYPhotoBrowserViewController.m */,
-				B8246D0E1BFF27E9004374DA /* WYPhotoCollectionViewCell.h */,
-				B8246D0F1BFF27E9004374DA /* WYPhotoCollectionViewCell.m */,
-				B8246D111BFF27FE004374DA /* WYPhoto.h */,
-				B8246D121BFF27FE004374DA /* WYPhoto.m */,
+				B8339C661C082FC000EEDC98 /* Models */,
+				B8339C691C082FC000EEDC98 /* ViewControllers */,
+				B8339C6C1C082FC000EEDC98 /* Views */,
 				B877299F1C02B8E200B8FE10 /* WYPhotoBrowserAnimator.h */,
 				B87729A01C02B8E200B8FE10 /* WYPhotoBrowserAnimator.m */,
 			);
 			path = WYPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		B8339C661C082FC000EEDC98 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B8339C671C082FC000EEDC98 /* WYPhoto.h */,
+				B8339C681C082FC000EEDC98 /* WYPhoto.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B8339C691C082FC000EEDC98 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B8339C6A1C082FC000EEDC98 /* WYPhotoBrowserViewController.h */,
+				B8339C6B1C082FC000EEDC98 /* WYPhotoBrowserViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B8339C6C1C082FC000EEDC98 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B8339C6D1C082FC000EEDC98 /* WYPhotoCollectionViewCell.h */,
+				B8339C6E1C082FC000EEDC98 /* WYPhotoCollectionViewCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B8339C721C082FF700EEDC98 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				B8339C731C082FF700EEDC98 /* MasterViewController.h */,
+				B8339C741C082FF700EEDC98 /* MasterViewController.m */,
+			);
+			path = Demo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,13 +284,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8339C701C082FC000EEDC98 /* WYPhotoBrowserViewController.m in Sources */,
 				B8246CF51BFF0299004374DA /* AppDelegate.m in Sources */,
-				B8246D101BFF27E9004374DA /* WYPhotoCollectionViewCell.m in Sources */,
-				B8246CF81BFF0299004374DA /* MasterViewController.m in Sources */,
 				B8246CF21BFF0299004374DA /* main.m in Sources */,
 				B87729A11C02B8E200B8FE10 /* WYPhotoBrowserAnimator.m in Sources */,
-				B8246D0D1BFF1A5B004374DA /* WYPhotoBrowserViewController.m in Sources */,
-				B8246D131BFF27FE004374DA /* WYPhoto.m in Sources */,
+				B8339C6F1C082FC000EEDC98 /* WYPhoto.m in Sources */,
+				B8339C711C082FC000EEDC98 /* WYPhotoCollectionViewCell.m in Sources */,
+				B8339C751C082FF700EEDC98 /* MasterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
