@@ -10,6 +10,14 @@
 #import "WYPhotoBrowserViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
+static inline BOOL LVMWYSystermVersionGreaterThanOrEqual(NSString *version) {
+  return ([[[UIDevice currentDevice] systemVersion] compare:version options:NSNumericSearch] != NSOrderedAscending);
+}
+
+static inline BOOL LVMWYSystermVersion_8_OrLater() {
+  return LVMWYSystermVersionGreaterThanOrEqual(@"8.0");
+}
+
 @interface WYPhotoBrowserAnimator ()<UIViewControllerTransitioningDelegate,
                                       UIViewControllerAnimatedTransitioning,
                                       WYPhotoBrowserViewControllerDelegate>
@@ -52,10 +60,19 @@
   vc.wy_delegate = self;
   vc.wy_currentIndex = fromIndex;
   vc.transitioningDelegate = self;
-  vc.modalPresentationStyle = UIModalPresentationCustom;
+  if (LVMWYSystermVersion_8_OrLater()) {
+    vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+  }
   self.photoBrowserViewController = vc;
-  UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
-  [keyWindow.rootViewController presentViewController:vc animated:YES completion:nil];
+  UIViewController *rootVC = [self wy_topViewController];
+  if (!LVMWYSystermVersion_8_OrLater()) {
+    rootVC.modalPresentationStyle = UIModalPresentationCurrentContext;
+  }
+  [rootVC presentViewController:vc animated:YES completion:^{
+    if (!LVMWYSystermVersion_8_OrLater()) {
+      rootVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    }
+  }];
 }
 
 #pragma mark - Pravite Methods 
@@ -158,6 +175,15 @@
 #pragma mark - setter & getter
 - (NSInteger)wy_currentIndex {
   return self.photoBrowserViewController.wy_currentIndex;
+}
+
+- (UIViewController *)wy_topViewController {
+  UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+  UIViewController *topVC = keyWindow.rootViewController;
+  while (topVC.presentedViewController) {
+    topVC = topVC.presentedViewController;
+  }
+  return topVC;
 }
 
 @end
