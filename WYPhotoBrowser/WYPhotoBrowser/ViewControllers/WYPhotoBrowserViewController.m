@@ -115,7 +115,7 @@ static CGFloat const kWYPageControlBottomSpace = 50;
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-  WYPhotoBrowserFlutterTransition *transition = [[WYPhotoBrowserFlutterTransition alloc] initWithTransitionType:WYPhotoBrowserTransitionTypePresent];
+  WYPhotoBrowserFlutterTransition *transition = [[WYPhotoBrowserFlutterTransition alloc] initWithTransitionType:WYPhotoBrowserTransitionTypeDismiss];
   return transition;
 }
 
@@ -156,6 +156,10 @@ static CGFloat const kWYPageControlBottomSpace = 50;
     _pageControl.currentPage = self.currentIndex;
   }
   return _pageControl;
+}
+
+- (WYPhoto *)currentPhoto {
+  return self.photos[self.currentIndex + 1];
 }
 
 - (void)setCurrentIndex:(NSInteger)currentIndex {

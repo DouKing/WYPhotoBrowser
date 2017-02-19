@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<WYPhotoBrowserViewControllerDataSource> dataSource;
 
 @property (nonatomic, assign) NSInteger currentIndex;
+@property (nonatomic, strong, readonly) WYPhoto *currentPhoto;
 
 - (instancetype)initWithPhotos:(NSArray<WYPhoto *> * _Nullable)photos;
 
