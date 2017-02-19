@@ -33,7 +33,7 @@
 - (IBAction)_handleClickAction:(UIButton *)sender {
   NSInteger index = sender.tag - 1000;
   WYPhotoBrowserViewController *vc = [[WYPhotoBrowserViewController alloc] initWithPhotos:self.photos];
-  vc.wy_currentIndex = index;
+  vc.currentIndex = index;
   if (0 == index) {
     [self presentViewController:vc animated:YES completion:nil];
   } else {

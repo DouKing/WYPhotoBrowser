@@ -16,15 +16,15 @@ extern CGFloat const kWYPhotoImageViewInsert;
 
 @protocol WYPhotoCollectionViewCellDelegate <NSObject>
 
-- (void)wy_photoCollectionViewCell:(WYPhotoCollectionViewCell *)cell didTapImageView:(UIImageView *)imageView;
+- (void)photoCollectionViewCell:(WYPhotoCollectionViewCell *)cell didTapImageView:(UIImageView *)imageView;
 
 @end
 
 @interface WYPhotoCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, weak) id<WYPhotoCollectionViewCellDelegate> wy_delegate;
+@property (nonatomic, weak) id<WYPhotoCollectionViewCellDelegate> delegate;
 
-- (void)wy_setupWithPhoto:(WYPhoto *)photo;
+- (void)setupWithPhoto:(WYPhoto *)photo;
 
 @end
 

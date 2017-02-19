@@ -15,15 +15,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol WYPhotoBrowserViewControllerDelegate <NSObject>
 
-- (void)wy_photoBrowserViewController:(WYPhotoBrowserViewController *)photoBrowserViewController
-             didClickImageViewAtIndex:(NSInteger)index;
+- (void)photoBrowserViewController:(WYPhotoBrowserViewController *)photoBrowserViewController
+          didClickImageViewAtIndex:(NSInteger)index;
+
+@end
+
+@protocol WYPhotoBrowserViewControllerDataSource <NSObject>
+
+@required
+/// 相对于屏幕的frame
+- (CGRect)photoBrowserViewController:(WYPhotoBrowserViewController *)browserViewController
+     sourceViewFrameAtScreenForIndex:(NSInteger)index;
 
 @end
 
 @interface WYPhotoBrowserViewController : UIViewController
 
-@property (nonatomic, weak) id<WYPhotoBrowserViewControllerDelegate> wy_delegate;
-@property (nonatomic, assign) NSInteger wy_currentIndex;
+@property (nonatomic, weak) id<WYPhotoBrowserViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<WYPhotoBrowserViewControllerDataSource> dataSource;
+
+@property (nonatomic, assign) NSInteger currentIndex;
 
 - (instancetype)initWithPhotos:(NSArray<WYPhoto *> * _Nullable)photos;
 

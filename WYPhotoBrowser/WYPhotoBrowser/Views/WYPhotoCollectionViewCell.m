@@ -26,7 +26,7 @@ CGFloat const kWYPhotoImageViewInsert = 5;
   return self;
 }
 
-- (void)wy_setupWithPhoto:(WYPhoto *)photo {
+- (void)setupWithPhoto:(WYPhoto *)photo {
   [self.scrollView setZoomScale:1];
   [self.imageView sd_setImageWithURL:[NSURL URLWithString:photo.wy_bigImageURL]
                     placeholderImage:photo.wy_smallImage
@@ -76,8 +76,8 @@ CGFloat const kWYPhotoImageViewInsert = 5;
 
 #pragma mark -
 - (void)_handleSingleTapAction:(UITapGestureRecognizer *)gesture {
-  if (self.wy_delegate && [self.wy_delegate respondsToSelector:@selector(wy_photoCollectionViewCell:didTapImageView:)]) {
-    [self.wy_delegate wy_photoCollectionViewCell:self didTapImageView:(UIImageView *)gesture.view];
+  if (self.delegate && [self.delegate respondsToSelector:@selector(photoCollectionViewCell:didTapImageView:)]) {
+    [self.delegate photoCollectionViewCell:self didTapImageView:(UIImageView *)gesture.view];
   }
 }
 
