@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0095F33B1E598CF90040CC63 /* WYPhotoBrowserTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095F33A1E598CF90040CC63 /* WYPhotoBrowserTransition.m */; };
+		0095F33E1E5999560040CC63 /* WYPhotoBrowserFlutterTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095F33D1E5999560040CC63 /* WYPhotoBrowserFlutterTransition.m */; };
 		25FE25D9B7302D1DD8A477BD /* libPods-WYPhotoBrowser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE045DAEC171D0AB4FF5714D /* libPods-WYPhotoBrowser.a */; };
 		B8246CF21BFF0299004374DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246CF11BFF0299004374DA /* main.m */; };
 		B8246CF51BFF0299004374DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246CF41BFF0299004374DA /* AppDelegate.m */; };
@@ -18,12 +19,13 @@
 		B8339C701C082FC000EEDC98 /* WYPhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8339C6B1C082FC000EEDC98 /* WYPhotoBrowserViewController.m */; };
 		B8339C711C082FC000EEDC98 /* WYPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8339C6E1C082FC000EEDC98 /* WYPhotoCollectionViewCell.m */; };
 		B8339C751C082FF700EEDC98 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8339C741C082FF700EEDC98 /* MasterViewController.m */; };
-		B87729A11C02B8E200B8FE10 /* WYPhotoBrowserAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = B87729A01C02B8E200B8FE10 /* WYPhotoBrowserAnimator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0095F3391E598CF90040CC63 /* WYPhotoBrowserTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPhotoBrowserTransition.h; sourceTree = "<group>"; };
 		0095F33A1E598CF90040CC63 /* WYPhotoBrowserTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPhotoBrowserTransition.m; sourceTree = "<group>"; };
+		0095F33C1E5999560040CC63 /* WYPhotoBrowserFlutterTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPhotoBrowserFlutterTransition.h; sourceTree = "<group>"; };
+		0095F33D1E5999560040CC63 /* WYPhotoBrowserFlutterTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPhotoBrowserFlutterTransition.m; sourceTree = "<group>"; };
 		00B0ACEEFA0D2BAFCA718BF4 /* Pods-WYPhotoBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYPhotoBrowser.release.xcconfig"; path = "Pods/Target Support Files/Pods-WYPhotoBrowser/Pods-WYPhotoBrowser.release.xcconfig"; sourceTree = "<group>"; };
 		4741927B42F271B73DC35095 /* Pods-WYPhotoBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYPhotoBrowser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WYPhotoBrowser/Pods-WYPhotoBrowser.debug.xcconfig"; sourceTree = "<group>"; };
 		B8246CED1BFF0299004374DA /* WYPhotoBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYPhotoBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,8 +44,6 @@
 		B8339C6E1C082FC000EEDC98 /* WYPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		B8339C731C082FF700EEDC98 /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		B8339C741C082FF700EEDC98 /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		B877299F1C02B8E200B8FE10 /* WYPhotoBrowserAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPhotoBrowserAnimator.h; sourceTree = "<group>"; };
-		B87729A01C02B8E200B8FE10 /* WYPhotoBrowserAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPhotoBrowserAnimator.m; sourceTree = "<group>"; };
 		BE045DAEC171D0AB4FF5714D /* libPods-WYPhotoBrowser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYPhotoBrowser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -64,6 +64,8 @@
 			children = (
 				0095F3391E598CF90040CC63 /* WYPhotoBrowserTransition.h */,
 				0095F33A1E598CF90040CC63 /* WYPhotoBrowserTransition.m */,
+				0095F33C1E5999560040CC63 /* WYPhotoBrowserFlutterTransition.h */,
+				0095F33D1E5999560040CC63 /* WYPhotoBrowserFlutterTransition.m */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -126,8 +128,6 @@
 				B8339C661C082FC000EEDC98 /* Models */,
 				B8339C691C082FC000EEDC98 /* ViewControllers */,
 				B8339C6C1C082FC000EEDC98 /* Views */,
-				B877299F1C02B8E200B8FE10 /* WYPhotoBrowserAnimator.h */,
-				B87729A01C02B8E200B8FE10 /* WYPhotoBrowserAnimator.m */,
 			);
 			path = WYPhotoBrowser;
 			sourceTree = "<group>";
@@ -300,7 +300,7 @@
 				B8339C701C082FC000EEDC98 /* WYPhotoBrowserViewController.m in Sources */,
 				B8246CF51BFF0299004374DA /* AppDelegate.m in Sources */,
 				B8246CF21BFF0299004374DA /* main.m in Sources */,
-				B87729A11C02B8E200B8FE10 /* WYPhotoBrowserAnimator.m in Sources */,
+				0095F33E1E5999560040CC63 /* WYPhotoBrowserFlutterTransition.m in Sources */,
 				B8339C6F1C082FC000EEDC98 /* WYPhoto.m in Sources */,
 				B8339C711C082FC000EEDC98 /* WYPhotoCollectionViewCell.m in Sources */,
 				0095F33B1E598CF90040CC63 /* WYPhotoBrowserTransition.m in Sources */,
