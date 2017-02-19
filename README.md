@@ -4,34 +4,36 @@
 ## 封装逻辑
 
 - `WYPhotoBrowserViewController`负责展示图片，每张图片是一个`WYPhoto`对象
-- `WYPhotoBrowserAnimator`是对`WYPhotoBrowserViewController`的一层封装，负责展示和消失的动画
+- `WYPhotoBrowserTransition`是展示和消失的动画的基类
 
 ## 使用方法
 
-- Step1: 生成`WYPhotoBrowserAnimator`对象，并强持有该对象
-- Step2: 传入图片数组
-- Step3: 调用`wy_showFromIndex:`方法将图片浏览器显示在屏幕上
-- Step4: 实现协议`WYPhotoBrowserAnimatorDataSource`
+- Step1: 根据图片数组生成`WYPhotoBrowserViewController`对象
+- Step2: 指定数据源 `dataSource`
+- Step3: 调用 `presentViewController:animated:completion:` 或 `pushViewController:animated:`弹出vc
+- Step4: 实现协议`WYPhotoBrowserViewControllerDataSource`
 
 ```
-  WYPhotoBrowserAnimator *animator = [[WYPhotoBrowserAnimator alloc] initWithPhotos:self.photos];
-  animator.wy_dataSource = self;
-  self.animator = animator;
-  [animator wy_showFromIndex:index];
+  NSInteger index = xxx;
+  WYPhotoBrowserViewController *vc = [[WYPhotoBrowserViewController alloc] initWithPhotos:self.photos];
+  vc.dataSource = self;
+  vc.currentIndex = index;
+  [self presentViewController:vc animated:YES completion:nil];
 ```
 
 ```
-#pragma mark - WYPhotoBrowserAnimatorDataSource
-- (CGRect)wy_photoBrowserAnimator:(WYPhotoBrowserAnimator *)animator frameAtScreenForIndex:(NSInteger)index {
-  NSInteger tag = index + XXXXX;
-  UIView *view = [self.view viewWithTag:tag];
-  return [self.view convertRect:view.frame toView:[UIApplication sharedApplication].keyWindow];
+#pragma mark - WYPhotoBrowserViewControllerDataSource
+
+- (CGRect)photoBrowserViewController:(WYPhotoBrowserViewController *)browserViewController sourceViewFrameAtScreenForIndex:(NSInteger)index {
+  NSInteger tag = index + yyyyy;
+  UIView *imgView = [self.view viewWithTag:xxxxx];
+  return [self.view convertRect:imgView toView:[UIApplication sharedApplication].keyWindow];
 }
 ```
 
 ## 如何扩展
 
-您可以仿照`WYPhotoBrowserAnimator`或继承`WYPhotoBrowserAnimator`继续给`WYPhotoBrowserViewController`添加动画效果
+您可以继承`WYPhotoBrowserTransition`继续给`WYPhotoBrowserViewController`添加动画效果
 
 ## 开始项目贡献
 
