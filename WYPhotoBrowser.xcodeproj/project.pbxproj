@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6ECE7B7FB7446A08C9AC3528 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 197E698B97F2BD6B6FE0065D /* libPods.a */; };
+		25FE25D9B7302D1DD8A477BD /* libPods-WYPhotoBrowser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE045DAEC171D0AB4FF5714D /* libPods-WYPhotoBrowser.a */; };
 		B8246CF21BFF0299004374DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246CF11BFF0299004374DA /* main.m */; };
 		B8246CF51BFF0299004374DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246CF41BFF0299004374DA /* AppDelegate.m */; };
 		B8246CFE1BFF0299004374DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8246CFC1BFF0299004374DA /* Main.storyboard */; };
@@ -21,7 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		197E698B97F2BD6B6FE0065D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		00B0ACEEFA0D2BAFCA718BF4 /* Pods-WYPhotoBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYPhotoBrowser.release.xcconfig"; path = "Pods/Target Support Files/Pods-WYPhotoBrowser/Pods-WYPhotoBrowser.release.xcconfig"; sourceTree = "<group>"; };
+		4741927B42F271B73DC35095 /* Pods-WYPhotoBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYPhotoBrowser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WYPhotoBrowser/Pods-WYPhotoBrowser.debug.xcconfig"; sourceTree = "<group>"; };
 		B8246CED1BFF0299004374DA /* WYPhotoBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYPhotoBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8246CF11BFF0299004374DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B8246CF31BFF0299004374DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -40,8 +41,7 @@
 		B8339C741C082FF700EEDC98 /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		B877299F1C02B8E200B8FE10 /* WYPhotoBrowserAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPhotoBrowserAnimator.h; sourceTree = "<group>"; };
 		B87729A01C02B8E200B8FE10 /* WYPhotoBrowserAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPhotoBrowserAnimator.m; sourceTree = "<group>"; };
-		BEB4824533D2BAFFBED681EE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		D2220D01A1CC1C8CC6F00D9E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		BE045DAEC171D0AB4FF5714D /* libPods-WYPhotoBrowser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYPhotoBrowser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,26 +49,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6ECE7B7FB7446A08C9AC3528 /* libPods.a in Frameworks */,
+				25FE25D9B7302D1DD8A477BD /* libPods-WYPhotoBrowser.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2E3A4A1EF42566B3CFF2877D /* Frameworks */ = {
+		3C26F7207D0CBD70CF1064B5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				197E698B97F2BD6B6FE0065D /* libPods.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A883DE87A6FAA74A5AEFA147 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				D2220D01A1CC1C8CC6F00D9E /* Pods.debug.xcconfig */,
-				BEB4824533D2BAFFBED681EE /* Pods.release.xcconfig */,
+				4741927B42F271B73DC35095 /* Pods-WYPhotoBrowser.debug.xcconfig */,
+				00B0ACEEFA0D2BAFCA718BF4 /* Pods-WYPhotoBrowser.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -78,8 +70,8 @@
 			children = (
 				B8246CEF1BFF0299004374DA /* WYPhotoBrowser */,
 				B8246CEE1BFF0299004374DA /* Products */,
-				A883DE87A6FAA74A5AEFA147 /* Pods */,
-				2E3A4A1EF42566B3CFF2877D /* Frameworks */,
+				3C26F7207D0CBD70CF1064B5 /* Pods */,
+				DA399A7B99A7DBFD6B3523AB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,6 +155,14 @@
 			path = Demo;
 			sourceTree = "<group>";
 		};
+		DA399A7B99A7DBFD6B3523AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE045DAEC171D0AB4FF5714D /* libPods-WYPhotoBrowser.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -170,12 +170,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B8246D071BFF0299004374DA /* Build configuration list for PBXNativeTarget "WYPhotoBrowser" */;
 			buildPhases = (
-				44A8925DFF2CE64B0E3DE508 /* Check Pods Manifest.lock */,
+				0F5F98BC46069F3CA48F0281 /* [CP] Check Pods Manifest.lock */,
 				B8246CE91BFF0299004374DA /* Sources */,
 				B8246CEA1BFF0299004374DA /* Frameworks */,
 				B8246CEB1BFF0299004374DA /* Resources */,
-				4F67D2C44B7BF5211B41A2F4 /* Embed Pods Frameworks */,
-				65D845628DC9318D5D93466B /* Copy Pods Resources */,
+				4F75987261A0ED7B57C63512 /* [CP] Embed Pods Frameworks */,
+				DFFB379F9D2347DAECA2D03B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -232,49 +232,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		44A8925DFF2CE64B0E3DE508 /* Check Pods Manifest.lock */ = {
+		0F5F98BC46069F3CA48F0281 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		4F67D2C44B7BF5211B41A2F4 /* Embed Pods Frameworks */ = {
+		4F75987261A0ED7B57C63512 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WYPhotoBrowser/Pods-WYPhotoBrowser-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		65D845628DC9318D5D93466B /* Copy Pods Resources */ = {
+		DFFB379F9D2347DAECA2D03B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WYPhotoBrowser/Pods-WYPhotoBrowser-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -400,7 +400,7 @@
 		};
 		B8246D081BFF0299004374DA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D2220D01A1CC1C8CC6F00D9E /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 4741927B42F271B73DC35095 /* Pods-WYPhotoBrowser.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WYPhotoBrowser/Info.plist;
@@ -413,7 +413,7 @@
 		};
 		B8246D091BFF0299004374DA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BEB4824533D2BAFFBED681EE /* Pods.release.xcconfig */;
+			baseConfigurationReference = 00B0ACEEFA0D2BAFCA718BF4 /* Pods-WYPhotoBrowser.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WYPhotoBrowser/Info.plist;
