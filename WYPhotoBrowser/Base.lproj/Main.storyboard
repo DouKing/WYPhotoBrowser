@@ -44,13 +44,23 @@
                                     <action selector="_handleClickAction:" destination="Kpa-pQ-qkt" eventType="touchUpInside" id="MaR-ew-gRy"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IHL-uy-0c5">
+                                <rect key="frame" x="0.0" y="582" width="375" height="85"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="2hw-wX-oRn"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="aag-ES-qhY" firstAttribute="top" secondItem="JFg-yY-ouw" secondAttribute="bottom" constant="97" id="24y-3c-RiX"/>
+                            <constraint firstItem="IHL-uy-0c5" firstAttribute="leading" secondItem="lGm-e9-C5H" secondAttribute="leading" id="8Xt-ws-OQ7"/>
                             <constraint firstItem="FbO-qN-HuS" firstAttribute="leading" secondItem="lGm-e9-C5H" secondAttribute="leadingMargin" constant="19" id="VfM-Xa-bqB"/>
                             <constraint firstItem="FbO-qN-HuS" firstAttribute="top" secondItem="JFg-yY-ouw" secondAttribute="bottom" constant="97" id="W2s-6h-phA"/>
                             <constraint firstItem="aag-ES-qhY" firstAttribute="leading" secondItem="FbO-qN-HuS" secondAttribute="trailing" constant="56" id="WYC-DB-plv"/>
+                            <constraint firstAttribute="trailing" secondItem="IHL-uy-0c5" secondAttribute="trailing" id="b87-2J-qIr"/>
+                            <constraint firstItem="uok-9s-WOj" firstAttribute="top" secondItem="IHL-uy-0c5" secondAttribute="bottom" id="jLr-TW-AqK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="U6R-wx-QVp"/>
@@ -61,7 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="plr-rP-EzA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5296" y="603"/>
+            <point key="canvasLocation" x="5295.1999999999998" y="602.24887556221893"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RAF-k7-T6j">

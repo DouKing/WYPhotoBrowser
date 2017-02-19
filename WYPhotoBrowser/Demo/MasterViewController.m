@@ -13,7 +13,7 @@
 #define SCREEN_WIDTH  CGRectGetWidth([UIScreen mainScreen].bounds)
 #define SCREEN_HEIGHT CGRectGetHeight([UIScreen mainScreen].bounds)
 
-@interface MasterViewController ()
+@interface MasterViewController ()<WYPhotoBrowserViewControllerDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *imageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *imageBtn2;
 
@@ -33,6 +33,7 @@
 - (IBAction)_handleClickAction:(UIButton *)sender {
   NSInteger index = sender.tag - 1000;
   WYPhotoBrowserViewController *vc = [[WYPhotoBrowserViewController alloc] initWithPhotos:self.photos];
+  vc.dataSource = self;
   vc.currentIndex = index;
   if (0 == index) {
     [self presentViewController:vc animated:YES completion:nil];
@@ -41,16 +42,17 @@
   }
 }
 
-//#pragma mark - WYPhotoBrowserAnimatorDataSource
-//- (CGRect)wy_photoBrowserAnimator:(WYPhotoBrowserAnimator *)animator frameAtScreenForIndex:(NSInteger)index {
-//  if (0 == index) {
-//    return [self.view convertRect:self.imageBtn.frame toView:[UIApplication sharedApplication].keyWindow];
-//  }
-//  if (1 == index) {
-//    return [self.view convertRect:self.imageBtn2.frame toView:[UIApplication sharedApplication].keyWindow];
-//  }
-//  return CGRectMake(SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0, 0, 0);
-//}
+#pragma mark - WYPhotoBrowserViewControllerDataSource
+
+- (CGRect)photoBrowserViewController:(WYPhotoBrowserViewController *)browserViewController sourceViewFrameAtScreenForIndex:(NSInteger)index {
+  if (0 == index) {
+    return [self.view convertRect:self.imageBtn.frame toView:[UIApplication sharedApplication].keyWindow];
+  }
+  if (1 == index) {
+    return [self.view convertRect:self.imageBtn2.frame toView:[UIApplication sharedApplication].keyWindow];
+  }
+  return CGRectMake(SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0, 0, 0);
+}
 
 #pragma mark - setter & getter
 - (NSArray *)smallImageURLs {
