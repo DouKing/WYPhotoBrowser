@@ -7,16 +7,16 @@
 //
 
 #import "WYPhotoBrowserViewController.h"
+#import "WYPhotoBrowserTransition.h"
 #import "WYPhotoCollectionViewCell.h"
 
 static NSString * const kWYPhotoCollectionViewCellId = @"kWYPhotoCollectionViewCellId";
 static CGFloat const kWYPageControlHeight = 20;
 static CGFloat const kWYPageControlBottomSpace = 50;
 
-@interface WYPhotoBrowserViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, WYPhotoCollectionViewCellDelegate>
+@interface WYPhotoBrowserViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIViewControllerTransitioningDelegate, WYPhotoCollectionViewCellDelegate>
 
 @property (nonatomic, strong) NSArray<WYPhoto *> *photos;
-@property (nonatomic, assign) NSInteger photoNumbers;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UIPageControl *pageControl;
 
@@ -29,12 +29,11 @@ static CGFloat const kWYPageControlBottomSpace = 50;
   if (self) {
     NSAssert(photos.count > 0, @"没图片啊！！");
     self.automaticallyAdjustsScrollViewInsets = NO;
-    _photoNumbers = photos.count;
+    self.modalPresentationStyle = UIModalPresentationCustom;
+    self.transitioningDelegate = self;
     NSMutableArray *temp = [NSMutableArray arrayWithArray:photos];
-    if (_photoNumbers > 1) {
-      [temp insertObject:photos.lastObject atIndex:0];
-      [temp addObject:photos.firstObject];
-    }
+    [temp insertObject:photos.lastObject atIndex:0];
+    [temp addObject:photos.firstObject];
     _photos = [NSArray arrayWithArray:temp];
   }
   return self;
@@ -45,13 +44,12 @@ static CGFloat const kWYPageControlBottomSpace = 50;
   self.view.backgroundColor = [UIColor blackColor];
   [self.view addSubview:self.collectionView];
   [self.view addSubview:self.pageControl];
-  
-  [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.wy_currentIndex + 1 inSection:0]
-                              atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
 }
 
 - (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
+  [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.wy_currentIndex + 1 inSection:0]
+                              atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
   CGRect frame = CGRectMake(-kWYPhotoImageViewInsert, 0, [self _itemWidth], CGRectGetHeight(self.view.bounds));
   self.collectionView.frame = frame;
   frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) - kWYPageControlBottomSpace,
@@ -61,17 +59,14 @@ static CGFloat const kWYPageControlBottomSpace = 50;
 
 #pragma mark - WYPhotoCollectionViewCellDelegate
 - (void)wy_photoCollectionViewCell:(WYPhotoCollectionViewCell *)cell didTapImageView:(UIImageView *)imageView {
-  NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
-  NSInteger index = indexPath.item;
-  if (self.photoNumbers > 1) {
-    if (0 == index) {
-      index = self.photoNumbers;
-    } else if (index == self.photoNumbers + 1) {
-      index = 1;
+  NSInteger index = self.pageControl.currentPage;
+  __weak typeof(self) weakSelf = self;
+  [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+    __strong typeof(weakSelf) strongSelf = weakSelf;
+    if ([strongSelf.wy_delegate respondsToSelector:@selector(wy_photoBrowserViewController:didClickImageViewAtIndex:)]) {
+      [strongSelf.wy_delegate wy_photoBrowserViewController:strongSelf didClickImageViewAtIndex:index];
     }
-  }
-  
-  [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+  }];
 }
 
 #pragma mark - UICollectionViewDataSource & UICollectionViewDelegate
@@ -89,27 +84,39 @@ static CGFloat const kWYPageControlBottomSpace = 50;
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-  if (_photoNumbers <= 1) { return; }
+  if (scrollView != self.collectionView) {
+    return;
+  }
+  
   CGFloat offsetX = scrollView.contentOffset.x;
   if (offsetX < CGRectGetWidth(self.collectionView.bounds)) {
-    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:self.photoNumbers inSection:0];
+    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:self.photos.count - 2 inSection:0];
     [self.collectionView scrollToItemAtIndexPath:lastIndexPath
                                 atScrollPosition:UICollectionViewScrollPositionNone
                                         animated:NO];
-    self.pageControl.currentPage = self.photoNumbers - 1;
-    self.wy_currentIndex = self.photoNumbers - 1;
-  } else if (offsetX > CGRectGetWidth(self.collectionView.bounds) * self.photoNumbers) {
+    self.wy_currentIndex = lastIndexPath.item - 1;
+  } else if (offsetX > CGRectGetWidth(self.collectionView.bounds) * (self.photos.count - 2)) {
     NSIndexPath *firstIndexPath = [NSIndexPath indexPathForItem:1 inSection:0];
     [self.collectionView scrollToItemAtIndexPath:firstIndexPath
                                 atScrollPosition:UICollectionViewScrollPositionNone
                                         animated:NO];
-    self.pageControl.currentPage = 0;
     self.wy_currentIndex = 0;
   } else {
     NSInteger index = offsetX / CGRectGetWidth(scrollView.bounds) - 1;
-    self.pageControl.currentPage = index;
     self.wy_currentIndex = index;
   }
+}
+
+#pragma mark - UIViewControllerTransitioningDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+  WYPhotoBrowserTransition *transition = [[WYPhotoBrowserTransition alloc] initWithTransitionType:WYPhotoBrowserTransitionTypePresent];
+  return transition;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+  WYPhotoBrowserTransition *transition = [[WYPhotoBrowserTransition alloc] initWithTransitionType:WYPhotoBrowserTransitionTypeDismiss];
+  return transition;
 }
 
 #pragma mark - Helper
@@ -129,11 +136,12 @@ static CGFloat const kWYPageControlBottomSpace = 50;
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero
-                                                          collectionViewLayout:flowLayout];
+                                         collectionViewLayout:flowLayout];
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
     _collectionView.alwaysBounceHorizontal = YES;
     _collectionView.pagingEnabled = YES;
+    _collectionView.scrollEnabled = self.photos.count > 3;
     [_collectionView registerClass:[WYPhotoCollectionViewCell class]
         forCellWithReuseIdentifier:kWYPhotoCollectionViewCellId];
   }
@@ -143,11 +151,16 @@ static CGFloat const kWYPageControlBottomSpace = 50;
 - (UIPageControl *)pageControl {
   if (!_pageControl) {
     _pageControl = [[UIPageControl alloc] init];
-    _pageControl.numberOfPages = _photoNumbers;
+    _pageControl.numberOfPages = self.photos.count - 2;
     _pageControl.hidesForSinglePage = YES;
     _pageControl.currentPage = self.wy_currentIndex;
   }
   return _pageControl;
+}
+
+- (void)setWy_currentIndex:(NSInteger)wy_currentIndex {
+  _wy_currentIndex = wy_currentIndex;
+  self.pageControl.currentPage = _wy_currentIndex;
 }
 
 @end

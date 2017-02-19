@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0095F33B1E598CF90040CC63 /* WYPhotoBrowserTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0095F33A1E598CF90040CC63 /* WYPhotoBrowserTransition.m */; };
 		25FE25D9B7302D1DD8A477BD /* libPods-WYPhotoBrowser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE045DAEC171D0AB4FF5714D /* libPods-WYPhotoBrowser.a */; };
 		B8246CF21BFF0299004374DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246CF11BFF0299004374DA /* main.m */; };
 		B8246CF51BFF0299004374DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8246CF41BFF0299004374DA /* AppDelegate.m */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0095F3391E598CF90040CC63 /* WYPhotoBrowserTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPhotoBrowserTransition.h; sourceTree = "<group>"; };
+		0095F33A1E598CF90040CC63 /* WYPhotoBrowserTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPhotoBrowserTransition.m; sourceTree = "<group>"; };
 		00B0ACEEFA0D2BAFCA718BF4 /* Pods-WYPhotoBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYPhotoBrowser.release.xcconfig"; path = "Pods/Target Support Files/Pods-WYPhotoBrowser/Pods-WYPhotoBrowser.release.xcconfig"; sourceTree = "<group>"; };
 		4741927B42F271B73DC35095 /* Pods-WYPhotoBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYPhotoBrowser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WYPhotoBrowser/Pods-WYPhotoBrowser.debug.xcconfig"; sourceTree = "<group>"; };
 		B8246CED1BFF0299004374DA /* WYPhotoBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYPhotoBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0095F3381E598CC20040CC63 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				0095F3391E598CF90040CC63 /* WYPhotoBrowserTransition.h */,
+				0095F33A1E598CF90040CC63 /* WYPhotoBrowserTransition.m */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
 		3C26F7207D0CBD70CF1064B5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +122,7 @@
 		B8246D0A1BFF17AD004374DA /* WYPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				0095F3381E598CC20040CC63 /* Animation */,
 				B8339C661C082FC000EEDC98 /* Models */,
 				B8339C691C082FC000EEDC98 /* ViewControllers */,
 				B8339C6C1C082FC000EEDC98 /* Views */,
@@ -290,6 +303,7 @@
 				B87729A11C02B8E200B8FE10 /* WYPhotoBrowserAnimator.m in Sources */,
 				B8339C6F1C082FC000EEDC98 /* WYPhoto.m in Sources */,
 				B8339C711C082FC000EEDC98 /* WYPhotoCollectionViewCell.m in Sources */,
+				0095F33B1E598CF90040CC63 /* WYPhotoBrowserTransition.m in Sources */,
 				B8339C751C082FF700EEDC98 /* MasterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
