@@ -8,17 +8,18 @@
 
 #import "WYPhotoBrowserViewController.h"
 #import "WYPhotoCollectionViewCell.h"
-#import "WYPhoto.h"
 
 static NSString * const kWYPhotoCollectionViewCellId = @"kWYPhotoCollectionViewCellId";
 static CGFloat const kWYPageControlHeight = 20;
 static CGFloat const kWYPageControlBottomSpace = 50;
 
 @interface WYPhotoBrowserViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, WYPhotoCollectionViewCellDelegate>
+
 @property (nonatomic, strong) NSArray<WYPhoto *> *photos;
 @property (nonatomic, assign) NSInteger photoNumbers;
-@property (nonatomic, weak) UICollectionView *collectionView;
-@property (nonatomic, weak) UIPageControl *pageControl;
+@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) UIPageControl *pageControl;
+
 @end
 
 @implementation WYPhotoBrowserViewController
@@ -27,6 +28,7 @@ static CGFloat const kWYPageControlBottomSpace = 50;
   self = [super initWithNibName:nil bundle:nil];
   if (self) {
     NSAssert(photos.count > 0, @"没图片啊！！");
+    self.automaticallyAdjustsScrollViewInsets = NO;
     _photoNumbers = photos.count;
     NSMutableArray *temp = [NSMutableArray arrayWithArray:photos];
     if (_photoNumbers > 1) {
@@ -41,43 +43,20 @@ static CGFloat const kWYPageControlBottomSpace = 50;
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.view.backgroundColor = [UIColor blackColor];
-  [self _setupCollectionView];
-  [self _setupPageControl];
+  [self.view addSubview:self.collectionView];
+  [self.view addSubview:self.pageControl];
+  
+  [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.wy_currentIndex + 1 inSection:0]
+                              atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
 }
 
-- (void)_setupCollectionView {
-  CGFloat width = CGRectGetWidth(self.view.bounds) + kWYPhotoImageViewInsert * 2;
-  UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-  flowLayout.itemSize = CGSizeMake(width, CGRectGetHeight(self.view.bounds));
-  flowLayout.minimumInteritemSpacing = 0;
-  flowLayout.minimumLineSpacing = 0;
-  flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-  
-  CGRect frame = CGRectMake(-kWYPhotoImageViewInsert, 0, width, CGRectGetHeight(self.view.bounds));
-  UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:frame
-                                                        collectionViewLayout:flowLayout];
-  collectionView.dataSource = self;
-  collectionView.delegate = self;
-  collectionView.alwaysBounceHorizontal = YES;
-  collectionView.pagingEnabled = YES;
-  [collectionView registerClass:[WYPhotoCollectionViewCell class]
-     forCellWithReuseIdentifier:kWYPhotoCollectionViewCellId];
-  self.collectionView = collectionView;
-  [self.view addSubview:collectionView];
-  
-  [collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.wy_currentIndex + 1 inSection:0]
-                         atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
-}
-
-- (void)_setupPageControl {
-  CGRect frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) - kWYPageControlBottomSpace,
-                            CGRectGetWidth(self.view.bounds), kWYPageControlHeight);
-  UIPageControl *pageControl = [[UIPageControl alloc] initWithFrame:frame];
-  pageControl.numberOfPages = self.photos.count - 2;
-  pageControl.hidesForSinglePage = YES;
-  pageControl.currentPage = self.wy_currentIndex;
-  self.pageControl = pageControl;
-  [self.view addSubview:pageControl];
+- (void)viewDidLayoutSubviews {
+  [super viewDidLayoutSubviews];
+  CGRect frame = CGRectMake(-kWYPhotoImageViewInsert, 0, [self _itemWidth], CGRectGetHeight(self.view.bounds));
+  self.collectionView.frame = frame;
+  frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) - kWYPageControlBottomSpace,
+                     CGRectGetWidth(self.view.bounds), kWYPageControlHeight);
+  self.pageControl.frame = frame;
 }
 
 #pragma mark - WYPhotoCollectionViewCellDelegate
@@ -91,10 +70,8 @@ static CGFloat const kWYPageControlBottomSpace = 50;
       index = 1;
     }
   }
-  if (self.wy_delegate && [self.wy_delegate respondsToSelector:
-                           @selector(wy_photoBrowserViewController:didClickImageViewAtIndex:)]) {
-    [self.wy_delegate wy_photoBrowserViewController:self didClickImageViewAtIndex:index];
-  }
+  
+  [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UICollectionViewDataSource & UICollectionViewDelegate
@@ -133,6 +110,44 @@ static CGFloat const kWYPageControlBottomSpace = 50;
     self.pageControl.currentPage = index;
     self.wy_currentIndex = index;
   }
+}
+
+#pragma mark - Helper
+
+- (CGFloat)_itemWidth {
+  return CGRectGetWidth(self.view.bounds) + kWYPhotoImageViewInsert * 2;
+}
+
+#pragma mark - setter & getter
+
+- (UICollectionView *)collectionView {
+  if (!_collectionView) {
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    flowLayout.itemSize = CGSizeMake([self _itemWidth], CGRectGetHeight(self.view.bounds));
+    flowLayout.minimumInteritemSpacing = 0;
+    flowLayout.minimumLineSpacing = 0;
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero
+                                                          collectionViewLayout:flowLayout];
+    _collectionView.dataSource = self;
+    _collectionView.delegate = self;
+    _collectionView.alwaysBounceHorizontal = YES;
+    _collectionView.pagingEnabled = YES;
+    [_collectionView registerClass:[WYPhotoCollectionViewCell class]
+        forCellWithReuseIdentifier:kWYPhotoCollectionViewCellId];
+  }
+  return _collectionView;
+}
+
+- (UIPageControl *)pageControl {
+  if (!_pageControl) {
+    _pageControl = [[UIPageControl alloc] init];
+    _pageControl.numberOfPages = _photoNumbers;
+    _pageControl.hidesForSinglePage = YES;
+    _pageControl.currentPage = self.wy_currentIndex;
+  }
+  return _pageControl;
 }
 
 @end

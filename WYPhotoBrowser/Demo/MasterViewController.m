@@ -7,16 +7,15 @@
 //
 
 #import "MasterViewController.h"
-#import "WYPhotoBrowserAnimator.h"
 #import <SDWebImage/UIButton+WebCache.h>
+#import "WYPhotoBrowserViewController.h"
 
 #define SCREEN_WIDTH  CGRectGetWidth([UIScreen mainScreen].bounds)
 #define SCREEN_HEIGHT CGRectGetHeight([UIScreen mainScreen].bounds)
 
-@interface MasterViewController ()<WYPhotoBrowserAnimatorDataSource>
+@interface MasterViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *imageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *imageBtn2;
-@property (nonatomic, strong) WYPhotoBrowserAnimator *animator;
 
 @property (nonatomic, strong) NSArray *bigImageURLs;
 @property (nonatomic, strong) NSArray *smallImageURLs;
@@ -33,22 +32,25 @@
 
 - (IBAction)_handleClickAction:(UIButton *)sender {
   NSInteger index = sender.tag - 1000;
-  WYPhotoBrowserAnimator *animator = [[WYPhotoBrowserAnimator alloc] initWithPhotos:self.photos];
-  animator.wy_dataSource = self;
-  self.animator = animator;
-  [animator wy_showFromIndex:index];
+  WYPhotoBrowserViewController *vc = [[WYPhotoBrowserViewController alloc] initWithPhotos:self.photos];
+  vc.wy_currentIndex = index;
+  if (0 == index) {
+    [self presentViewController:vc animated:YES completion:nil];
+  } else {
+    [self.navigationController pushViewController:vc animated:YES];
+  }
 }
 
-#pragma mark - WYPhotoBrowserAnimatorDataSource
-- (CGRect)wy_photoBrowserAnimator:(WYPhotoBrowserAnimator *)animator frameAtScreenForIndex:(NSInteger)index {
-  if (0 == index) {
-    return [self.view convertRect:self.imageBtn.frame toView:[UIApplication sharedApplication].keyWindow];
-  }
-  if (1 == index) {
-    return [self.view convertRect:self.imageBtn2.frame toView:[UIApplication sharedApplication].keyWindow];
-  }
-  return CGRectMake(SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0, 0, 0);
-}
+//#pragma mark - WYPhotoBrowserAnimatorDataSource
+//- (CGRect)wy_photoBrowserAnimator:(WYPhotoBrowserAnimator *)animator frameAtScreenForIndex:(NSInteger)index {
+//  if (0 == index) {
+//    return [self.view convertRect:self.imageBtn.frame toView:[UIApplication sharedApplication].keyWindow];
+//  }
+//  if (1 == index) {
+//    return [self.view convertRect:self.imageBtn2.frame toView:[UIApplication sharedApplication].keyWindow];
+//  }
+//  return CGRectMake(SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0, 0, 0);
+//}
 
 #pragma mark - setter & getter
 - (NSArray *)smallImageURLs {
