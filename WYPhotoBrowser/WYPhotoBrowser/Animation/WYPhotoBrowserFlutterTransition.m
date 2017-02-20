@@ -29,13 +29,22 @@
   imageView.contentMode = UIViewContentModeScaleAspectFit;
   imageView.clipsToBounds = YES;
   imageView.backgroundColor = [UIColor clearColor];
-  [imageView sd_setImageWithURL:[NSURL URLWithString:currentPhoto.wy_bigImageURL] placeholderImage:currentPhoto.wy_smallImage completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-    
-  }];
+  [imageView sd_setImageWithURL:[NSURL URLWithString:currentPhoto.wy_bigImageURL]
+               placeholderImage:currentPhoto.wy_smallImage
+                      completed:nil];
   [backgroundView addSubview:imageView];
-
+  
+  CGRect desFrame = toView.frame;
+  UIImage *image = currentPhoto.wy_image;
+  if (image) {
+    CGFloat w = desFrame.size.width;
+    CGFloat h = image.size.height / image.size.width * w;
+    if (h > desFrame.size.height) {
+      desFrame = CGRectMake(0, 0, w, h);
+    }
+  }
   [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-    imageView.frame = toView.frame;
+    imageView.frame = desFrame;
   } completion:^(BOOL finished) {
     [imageView removeFromSuperview];
     [containerView addSubview:toView];
@@ -46,18 +55,28 @@
 - (void)_dismissAnimateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
   WYPhotoBrowserViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
   UIView *containerView = [transitionContext containerView];
+  containerView.backgroundColor = [UIColor blackColor];
+  for (UIView *v in [containerView subviews]) {
+    [v removeFromSuperview];
+  }
   
   WYPhoto *currentPhoto = fromVC.currentPhoto;
   CGRect toRect = [fromVC.dataSource photoBrowserViewController:fromVC sourceViewFrameAtScreenForIndex:fromVC.currentIndex];
   
-  [fromVC.view removeFromSuperview];
-  containerView.backgroundColor = [UIColor blackColor];
-  
-  UIImageView *imageView = [[UIImageView alloc] initWithFrame:[containerView bounds]];
+  CGRect fromFrame = containerView.bounds;
+  UIImage *image = currentPhoto.wy_image;
+  if (image) {
+    CGFloat w = containerView.bounds.size.width;
+    CGFloat h = image.size.height / image.size.width * w;
+    if (h > containerView.bounds.size.height) {
+      fromFrame = CGRectMake(0, 0, w, h);
+    }
+  }
+  UIImageView *imageView = [[UIImageView alloc] initWithFrame:fromFrame];
   imageView.contentMode = UIViewContentModeScaleAspectFit;
   imageView.clipsToBounds = YES;
   imageView.backgroundColor = [UIColor clearColor];
-  imageView.image = currentPhoto.wy_image;
+  imageView.image = image;
   [containerView addSubview:imageView];
   
   [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{

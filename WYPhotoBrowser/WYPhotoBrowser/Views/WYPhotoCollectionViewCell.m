@@ -28,14 +28,16 @@ CGFloat const kWYPhotoImageViewInsert = 5;
 
 - (void)setupWithPhoto:(WYPhoto *)photo {
   [self.scrollView setZoomScale:1];
-  [self.imageView sd_setImageWithURL:[NSURL URLWithString:photo.wy_bigImageURL]
-                    placeholderImage:photo.wy_smallImage
-                           completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                             photo.wy_image = image;
-                       }];
+  __weak typeof(self) weakSelf = self;
+  [self.imageView sd_setImageWithURL:[NSURL URLWithString:photo.wy_bigImageURL] placeholderImage:photo.wy_smallImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    photo.wy_image = image;
+    __strong typeof(weakSelf) strongSelf = weakSelf;
+    [strongSelf _resetFrame:(image && !error)];
+  }];
 }
 
 #pragma mark - Pravite Methods -
+
 - (void)_setupSubViews {
   [self _setupScrollView];
   [self _setupImageView];
@@ -74,7 +76,23 @@ CGFloat const kWYPhotoImageViewInsert = 5;
   [imageView addGestureRecognizer:singleTapGesture];
 }
 
+- (void)_resetFrame:(BOOL)succeed {
+  if (succeed) {
+    UIImage *image = [self.imageView image];
+    CGFloat w = self.scrollView.frame.size.width;
+    CGFloat h = image.size.height / image.size.width * w;
+    if (h > self.scrollView.frame.size.height) {
+      self.imageView.frame = CGRectMake(0, 0, w, h);
+      self.scrollView.contentSize = CGSizeMake(0, h);
+    }
+  } else {
+    self.scrollView.contentSize = CGSizeZero;
+    self.imageView.frame = self.scrollView.bounds;
+  }
+}
+
 #pragma mark -
+
 - (void)_handleSingleTapAction:(UITapGestureRecognizer *)gesture {
   if (self.delegate && [self.delegate respondsToSelector:@selector(photoCollectionViewCell:didTapImageView:)]) {
     [self.delegate photoCollectionViewCell:self didTapImageView:(UIImageView *)gesture.view];
