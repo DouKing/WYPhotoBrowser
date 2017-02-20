@@ -8,7 +8,7 @@
 
 #import "WYPhotoBrowserFlutterTransition.h"
 #import "WYPhotoBrowserViewController.h"
-#import <UIImageView+WebCache.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation WYPhotoBrowserFlutterTransition
 
