@@ -57,7 +57,7 @@
 #pragma mark - setter & getter
 - (NSArray *)smallImageURLs {
   if (!_smallImageURLs) {
-    _smallImageURLs = @[@"http://pic.secooimg.com/thumb/112/112/pic1.secoo.com/comment/15/11/878ca70019fb4057ba9df62dea1d5bc0.jpg",
+    _smallImageURLs = @[@"https://pic12.secooimg.com/vendor_product_mall/16/8/83e7fb5e960d4ff69b25b31de8e3970a.jpg",
                         @"http://pic.secooimg.com/thumb/112/112/pic1.secoo.com/comment/15/11/951c285b4ef34dffa2a30a08ce2e2b4a.jpg"];
   }
   return _smallImageURLs;
@@ -65,7 +65,7 @@
 
 - (NSArray *)bigImageURLs {
   if (!_bigImageURLs) {
-    _bigImageURLs = @[@"http://pic.secooimg.com/comment/15/11/878ca70019fb4057ba9df62dea1d5bc0.jpg",
+    _bigImageURLs = @[@"https://pic12.secooimg.com/vendor_product_mall/16/8/83e7fb5e960d4ff69b25b31de8e3970a.jpg",
                       @"http://pic.secooimg.com/comment/15/11/951c285b4ef34dffa2a30a08ce2e2b4a.jpg"];
   }
   return _bigImageURLs;
