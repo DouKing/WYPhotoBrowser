@@ -6,6 +6,10 @@
 - `WYPhotoBrowserViewController`负责展示图片，每张图片是一个`WYPhoto`对象
 - `WYPhotoBrowserTransition`是展示和消失的动画的基类
 
+## 安装
+
+pod 'WYPhotoBrowser'
+
 ## 使用方法
 
 - Step1: 根据图片数组生成`WYPhotoBrowserViewController`对象
