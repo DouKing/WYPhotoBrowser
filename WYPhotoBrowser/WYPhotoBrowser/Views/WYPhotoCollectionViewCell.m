@@ -13,8 +13,11 @@
 CGFloat const kWYPhotoImageViewInsert = 5;
 
 @interface WYPhotoCollectionViewCell ()<UIScrollViewDelegate>
+
 @property (nonatomic, weak) UIImageView *imageView;
 @property (nonatomic, weak) UIScrollView *scrollView;
+@property (nonatomic, strong) WYPhoto *photo;
+
 @end
 
 @implementation WYPhotoCollectionViewCell
@@ -27,6 +30,10 @@ CGFloat const kWYPhotoImageViewInsert = 5;
 }
 
 - (void)setupWithPhoto:(WYPhoto *)photo {
+  if (self.photo == photo) {
+    return;
+  }
+  self.photo = photo;
   [self.scrollView setZoomScale:1];
   __weak typeof(self) weakSelf = self;
   [self.imageView sd_setImageWithURL:[NSURL URLWithString:photo.wy_bigImageURL] placeholderImage:photo.wy_smallImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -34,6 +41,17 @@ CGFloat const kWYPhotoImageViewInsert = 5;
     __strong typeof(weakSelf) strongSelf = weakSelf;
     [strongSelf _resetFrame:(image && !error)];
   }];
+}
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+  CGRect frame = CGRectMake(kWYPhotoImageViewInsert, 0,
+                            CGRectGetWidth(self.contentView.bounds) -
+                            kWYPhotoImageViewInsert * 2,
+                            CGRectGetHeight(self.contentView.bounds));
+  self.scrollView.frame = frame;
+  self.imageView.frame = self.scrollView.bounds;
+  [self _resetFrame:self.photo.wy_image];
 }
 
 #pragma mark - Pravite Methods -
@@ -44,11 +62,7 @@ CGFloat const kWYPhotoImageViewInsert = 5;
 }
 
 - (void)_setupScrollView {
-  CGRect frame = CGRectMake(kWYPhotoImageViewInsert, 0,
-                            CGRectGetWidth(self.contentView.bounds) -
-                            kWYPhotoImageViewInsert * 2,
-                            CGRectGetHeight(self.contentView.bounds));
-  UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:frame];
+  UIScrollView *scrollView = [[UIScrollView alloc] init];
   scrollView.delegate = self;
   scrollView.maximumZoomScale = 3;
   scrollView.minimumZoomScale = 1;
@@ -60,7 +74,7 @@ CGFloat const kWYPhotoImageViewInsert = 5;
 }
 
 - (void)_setupImageView {
-  UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.scrollView.bounds];
+  UIImageView *imageView = [[UIImageView alloc] init];
   imageView.contentMode = UIViewContentModeScaleAspectFit;
   imageView.clipsToBounds = YES;
   _imageView = imageView;
@@ -77,13 +91,25 @@ CGFloat const kWYPhotoImageViewInsert = 5;
 }
 
 - (void)_resetFrame:(BOOL)succeed {
+  CGFloat width = CGRectGetWidth(self.scrollView.bounds);
+  CGFloat height = CGRectGetHeight(self.scrollView.bounds);
+  if (width <= 0 || height <= 0) { return; }
   if (succeed) {
     UIImage *image = [self.imageView image];
-    CGFloat w = self.scrollView.frame.size.width;
-    CGFloat h = image.size.height / image.size.width * w;
-    if (h > self.scrollView.frame.size.height) {
-      self.imageView.frame = CGRectMake(0, 0, w, h);
-      self.scrollView.contentSize = CGSizeMake(0, h);
+    CGFloat w = width;
+    CGFloat h = height;
+    if (height < width) {
+      w = image.size.width / image.size.height * h;
+      if (w > width) {
+        self.imageView.frame = CGRectMake(0, 0, w, h);
+        self.scrollView.contentSize = CGSizeMake(w, 0);
+      }
+    } else {
+      h = image.size.height / image.size.width * w;
+      if (h > height) {
+        self.imageView.frame = CGRectMake(0, 0, w, h);
+        self.scrollView.contentSize = CGSizeMake(0, h);
+      }
     }
   } else {
     self.scrollView.contentSize = CGSizeZero;
