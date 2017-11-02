@@ -125,6 +125,8 @@ static CGFloat const kWYPageControlBottomSpace = 50;
     _collectionView.delegate = self;
     _collectionView.alwaysBounceHorizontal = YES;
     _collectionView.pagingEnabled = YES;
+    _collectionView.showsHorizontalScrollIndicator = NO;
+    _collectionView.showsVerticalScrollIndicator = NO;
     [_collectionView registerClass:[WYPhotoCollectionViewCell class]
         forCellWithReuseIdentifier:kWYPhotoCollectionViewCellId];
   }

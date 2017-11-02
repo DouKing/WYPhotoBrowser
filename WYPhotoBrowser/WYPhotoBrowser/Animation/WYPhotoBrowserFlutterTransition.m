@@ -29,13 +29,13 @@
   imageView.contentMode = UIViewContentModeScaleAspectFit;
   imageView.clipsToBounds = YES;
   imageView.backgroundColor = [UIColor clearColor];
-  [imageView sd_setImageWithURL:[NSURL URLWithString:currentPhoto.wy_bigImageURL]
-               placeholderImage:currentPhoto.wy_smallImage
+  [imageView sd_setImageWithURL:[NSURL URLWithString:currentPhoto.bigImageURL]
+               placeholderImage:currentPhoto.smallImage
                       completed:nil];
   [backgroundView addSubview:imageView];
   
   CGRect desFrame = toView.frame;
-  UIImage *image = currentPhoto.wy_image;
+  UIImage *image = currentPhoto.image;
   if (image) {
     CGFloat w = desFrame.size.width;
     CGFloat h = image.size.height / image.size.width * w;
@@ -64,7 +64,7 @@
   CGRect toRect = [fromVC.dataSource photoBrowserViewController:fromVC sourceViewFrameAtScreenForIndex:fromVC.currentIndex];
   
   CGRect fromFrame = containerView.bounds;
-  UIImage *image = currentPhoto.wy_image;
+  UIImage *image = currentPhoto.image;
   if (image) {
     CGFloat w = containerView.bounds.size.width;
     CGFloat h = image.size.height / image.size.width * w;

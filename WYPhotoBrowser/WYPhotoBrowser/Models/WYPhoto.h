@@ -13,10 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WYPhoto : NSObject
 /// 根据`wy_bigImageURL`下载的完整图片
-@property (nonatomic, strong) UIImage *wy_image;
+@property (nonatomic, strong) UIImage *image;
 
-@property (nonatomic, strong) UIImage *wy_smallImage;
-@property (nonatomic, copy) NSString *wy_bigImageURL;
+@property (nonatomic, strong) UIImage *smallImage;
+@property (nonatomic, copy)   NSString *bigImageURL;
 
 @end
 

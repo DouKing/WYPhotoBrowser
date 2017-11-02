@@ -36,10 +36,12 @@ CGFloat const kWYPhotoImageViewInsert = 5;
   self.photo = photo;
   [self.scrollView setZoomScale:1];
   __weak typeof(self) weakSelf = self;
-  [self.imageView sd_setImageWithURL:[NSURL URLWithString:photo.wy_bigImageURL] placeholderImage:photo.wy_smallImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-    photo.wy_image = image;
+  [self.imageView sd_setImageWithURL:[NSURL URLWithString:photo.bigImageURL] placeholderImage:photo.smallImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    photo.image = image;
     __strong typeof(weakSelf) strongSelf = weakSelf;
-    [strongSelf _resetFrame:(image && !error)];
+    if ((image && !error)) {
+      [strongSelf _resetFrame];
+    }
   }];
 }
 
@@ -51,7 +53,9 @@ CGFloat const kWYPhotoImageViewInsert = 5;
                             CGRectGetHeight(self.contentView.bounds));
   self.scrollView.frame = frame;
   self.imageView.frame = self.scrollView.bounds;
-  [self _resetFrame:self.photo.wy_image];
+  if (self.photo.image) {
+    [self _resetFrame];
+  }
 }
 
 #pragma mark - Pravite Methods -
@@ -69,6 +73,9 @@ CGFloat const kWYPhotoImageViewInsert = 5;
   scrollView.showsHorizontalScrollIndicator = NO;
   scrollView.showsVerticalScrollIndicator = NO;
   scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+  if (@available(iOS 11.0, *)) {
+    scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+  }
   _scrollView = scrollView;
   [self.contentView addSubview:scrollView];
 }
@@ -90,31 +97,40 @@ CGFloat const kWYPhotoImageViewInsert = 5;
   [imageView addGestureRecognizer:singleTapGesture];
 }
 
-- (void)_resetFrame:(BOOL)succeed {
+- (void)_resetFrame {
   CGFloat width = CGRectGetWidth(self.scrollView.bounds);
   CGFloat height = CGRectGetHeight(self.scrollView.bounds);
   if (width <= 0 || height <= 0) { return; }
-  if (succeed) {
-    UIImage *image = [self.imageView image];
-    CGFloat w = width;
-    CGFloat h = height;
-    if (height < width) {
-      w = image.size.width / image.size.height * h;
-      if (w > width) {
-        self.imageView.frame = CGRectMake(0, 0, w, h);
-        self.scrollView.contentSize = CGSizeMake(w, 0);
-      }
-    } else {
-      h = image.size.height / image.size.width * w;
-      if (h > height) {
-        self.imageView.frame = CGRectMake(0, 0, w, h);
-        self.scrollView.contentSize = CGSizeMake(0, h);
-      }
+  UIImage *image = [self.imageView image];
+  CGFloat imgWidth = image.size.width;
+  CGFloat imgHeight = image.size.height;
+  if (imgWidth <= 0 || imgHeight <= 0 ) { return; }
+  CGFloat radio = 1.5;
+  if (imgHeight / imgWidth < radio && imgWidth / imgHeight < radio) { return; }
+
+  CGFloat w = imgWidth, h = imgHeight;
+  CGFloat x = 0, y = 0;
+
+  if (imgHeight >= imgWidth) {
+    if (imgWidth > width) {
+      w = width;
+      h = imgHeight / imgWidth * w;
+      self.scrollView.contentSize = CGSizeMake(0, h);
     }
   } else {
-    self.scrollView.contentSize = CGSizeZero;
-    self.imageView.frame = self.scrollView.bounds;
+    if (imgHeight > height) {
+      h = height;
+      w = imgWidth / imgHeight * h;
+      self.scrollView.contentSize = CGSizeMake(w, 0);
+    }
   }
+  if (h < height) {
+    y = (height - h) / 2.0;
+  }
+  if (w < width) {
+    x = (width - w) / 2.0;
+  }
+  self.imageView.frame = CGRectMake(x, y, w, h);
 }
 
 #pragma mark -

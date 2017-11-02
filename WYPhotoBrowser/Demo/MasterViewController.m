@@ -76,8 +76,8 @@
     NSMutableArray *tempArray = [NSMutableArray array];
     for (NSInteger i = 0; i < 2; ++i) {
       WYPhoto *photo = [[WYPhoto alloc] init];
-      photo.wy_bigImageURL = self.bigImageURLs[i];
-      photo.wy_smallImage = [(UIButton *)[self.view viewWithTag:1000 + i] backgroundImageForState:UIControlStateNormal];
+      photo.bigImageURL = self.bigImageURLs[i];
+      photo.smallImage = [(UIButton *)[self.view viewWithTag:1000 + i] backgroundImageForState:UIControlStateNormal];
       [tempArray addObject:photo];
     }
     _photos = [NSArray arrayWithArray:tempArray];
