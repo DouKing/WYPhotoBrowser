@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'WYPhotoBrowser'
-  s.version      = '2.0'
+  s.version      = '2.1'
   s.summary      = '图片浏览器'
   s.homepage     = 'https://github.com/DouKing/WYPhotoBrowser'
   s.license      = 'MIT'
