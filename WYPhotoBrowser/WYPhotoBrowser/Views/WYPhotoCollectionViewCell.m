@@ -35,6 +35,11 @@ CGFloat const kWYPhotoImageViewInsert = 5;
   }
   self.photo = photo;
   [self.scrollView setZoomScale:1];
+  if (photo.image) {
+    self.imageView.image = photo.image;
+    [self _resetFrame];
+    return;
+  }
   __weak typeof(self) weakSelf = self;
   [self.imageView sd_setImageWithURL:[NSURL URLWithString:photo.bigImageURL] placeholderImage:photo.smallImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
     photo.image = image;
